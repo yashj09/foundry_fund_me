@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 import {Script} from "../lib/forge-std/src/Script.sol";
 
-contract HelperConfig {
+contract HelperConfig is Script {
     NetworkConfig public activeNetworkConfig;
     constructor() {
         if (block.chainid == 11155111) {
@@ -20,5 +20,9 @@ contract HelperConfig {
         });
         return sepoliaConfig;
     }
-    function getAnvilEthConfig() public pure returns (NetworkConfig memory) {}
+    function getAnvilEthConfig() public returns (NetworkConfig memory) {
+        vm.startBroadcast();
+
+        vm.stopBroadcast();
+    }
 }
