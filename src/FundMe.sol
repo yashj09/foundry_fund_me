@@ -17,6 +17,12 @@ contract FundMe {
     function getVersion() public view returns (uint256) {
         return s_priceFeed.version();
     }
+    function getPriceFeed() public view returns (AggregatorV3Interface) {
+        return s_priceFeed;
+    }
+     function getAddressToAmountFunded(address fundingAddress) public view returns (uint256) {
+        return s_addressToAmountFunded[fundingAddress];
+    
     function fund() public payable {
         require(
             msg.value.getConversion(s_priceFeed) > MINIMUM_USD,
